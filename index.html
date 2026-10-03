@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loyiha</title>
+</head>
+<style>
+    .div1{
+    background-color:white;
+    width: 300px;
+    border-radius: 20px;
+    border: 3px solid red;
+}
+ body{
+    background-color: lightblue;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ }
+ input{
+    margin: 10px;
+ }                                                              
+
+input{
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline-color: blue;
+}
+
+#addBtn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.list-item{
+    list-style: none;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+}   
+</style>
+<body>
+    <div class="div1">
+        <input id="input" type="text"> <button id="birinchi">qoshish</button>
+        <ul class="list-item">
+            <li id="list">vazifa</li> <button id="ochirilagan">delete</button>
+        </ul>
+    </div>
+
+<script>
+    let input = document.getElementById("input")
+let btn = document.getElementById("birinchi")
+let list = document.getElementById("list")
+
+btn.addEventListener("click", addtask)
+
+function addtask() {
+    let text = input.value
+
+    if (text === "") {
+        alert("Iltimos, vazifa kiriting")
+        return
+    }
+
+    let li = document.createElement("li")
+
+    let span = document.createElement("span")
+    span.textContent = text
+
+    let button = document.createElement("button")
+    button.textContent = "O`chirish"
+
+    button.addEventListener("click", (e) => {
+        e.stopPropagation()
+        li.remove()
+    })
+    li.addEventListener("click", () => {
+        li.classList.toggle("ochirilgan")
+    })
+
+    li.appendChild(span)
+    li.appendChild(button)
+    list.appendChild(li)
+
+    input.value = ""
+}
+
+</script>
+</body>
+</html>
